@@ -41,7 +41,7 @@ const takeFees = {
 
 const decimals = {
   'TOMO': 18,
-  'BTC': 8,
+  'BTC': 18,
   'ETH': 18,
   'USDT': 18,
 }
