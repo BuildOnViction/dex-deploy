@@ -13,8 +13,7 @@ const contractAddresses = JSON.parse(tokenContent)
 
 const symbols = Object.keys(contractAddresses[networkId])
 
-const quoteTokens = ['TOMO', 'BTC', 'ETH', 'USDT']
-// const quoteTokens = ['TOMO']
+const quoteTokens = ['TOMO', 'BTC', 'ETH', 'USDT', 'TOMOS']
 
 const supportedPairs = [
   'ETH/TOMO',
@@ -23,6 +22,7 @@ const supportedPairs = [
   'ETH/USDT',
   'TOMO/BTC',
   'TOMO/ETH',
+  'TOMO/TOMOS',
 ]
 
 const makeFees = {
@@ -30,6 +30,7 @@ const makeFees = {
   BTC: utils.bigNumberify(10).pow(18).div(250),
   ETH: utils.bigNumberify(10).pow(18).div(250),
   USDT: utils.bigNumberify(10).pow(18).div(250),
+  TOMOS: utils.bigNumberify(10).pow(18).div(250),
 }
 
 const takeFees = {
@@ -37,6 +38,7 @@ const takeFees = {
   BTC: utils.bigNumberify(10).pow(18).div(250),
   ETH: utils.bigNumberify(10).pow(18).div(250),
   USDT: utils.bigNumberify(10).pow(18).div(250),
+  TOMOS: utils.bigNumberify(10).pow(18).div(250),
 }
 
 const decimals = {
@@ -44,6 +46,7 @@ const decimals = {
   'BTC': 18,
   'ETH': 18,
   'USDT': 18,
+  'TOMOS': 18,
 }
 
 const nativeCurrency = {
