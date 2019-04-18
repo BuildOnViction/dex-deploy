@@ -13,7 +13,7 @@ const contractAddresses = JSON.parse(tokenContent)
 
 const symbols = Object.keys(contractAddresses[networkId])
 
-const quoteTokens = ['TOMO', 'BTC', 'ETH', 'USDT', 'TOMOS']
+const quoteTokens = ['TOMO', 'BTC', 'USDT', 'TOMOS']
 
 const supportedPairs = [
   'ETH/TOMO',
@@ -21,7 +21,6 @@ const supportedPairs = [
   'BTC/USDT',
   'ETH/USDT',
   'TOMO/BTC',
-  'TOMO/ETH',
   'TOMO/TOMOS',
 ]
 
