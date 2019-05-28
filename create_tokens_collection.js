@@ -27,6 +27,12 @@ const create = async () => {
             decimals: {
               bsonType: 'int',
             },
+            makeFee: {
+              bsonType: 'string'
+            },
+            takeFee: {
+              bsonType: 'string'
+            },
             usd: {
               bsonType: 'string'
             },
