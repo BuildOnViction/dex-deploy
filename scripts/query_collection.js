@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const argv = require('yargs').argv;
 const collection = argv.collection;
-const { DB_NAME, mongoUrl } = require('./utils/config');
+const { DB_NAME, mongoUrl } = require('../utils/config');
 let client, db;
 
 const query = async () => {

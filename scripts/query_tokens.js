@@ -3,7 +3,7 @@ const path = require('path')
 const utils = require('ethers').utils
 const program = require('commander')
 
-const { getNetworkID } = require('./utils/helpers')
+const { getNetworkID } = require('../utils/helpers')
 
 const network = process.argv[2]
 if (!network) console.log('Usage: node query_tokens {network}')
