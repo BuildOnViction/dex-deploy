@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient
 const { utils, Wallet } = require('ethers')
 const { getNetworkID } = require('./utils/helpers')
-const { DB_NAME, keys, mongoUrl, network } = require('./utils/config')
+const { DB_NAME, keys, mongoUrl, network } = require('./config/config')
 const networkID = getNetworkID(network)
 const walletKeys = keys[networkID]
 

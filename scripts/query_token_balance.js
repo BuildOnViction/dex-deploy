@@ -1,5 +1,5 @@
 const { providers, Contract } = require('ethers')
-const { ERC20 } = require('../utils/abis')
+const { ERC20 } = require('../src/utils/abis')
 
 const queryTokenBalances = async () => {
   try {

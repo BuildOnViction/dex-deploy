@@ -1,12 +1,12 @@
 const MongoClient = require('mongodb').MongoClient
-const { DB_NAME, mongoUrl } = require('./utils/config')
+const { DB_NAME, mongoUrl } = require('./config/config')
 
 const create = async () => {
   const client = await MongoClient.connect(mongoUrl, { useNewUrlParser: true })
-  console.log('Creating orders collection')
+  console.log('Creating trades collection')
   const db = client.db(DB_NAME)
   try {
-    await db.createCollection('orders', {
+    await db.createCollection('trades', {
       validator: {
         $jsonSchema: {
           bsonType: 'object',
@@ -14,55 +14,44 @@ const create = async () => {
             'baseToken',
             'quoteToken',
             'amount',
-            'pricepoint',
-            'userAddress',
-            'exchangeAddress',
-            'filledAmount',
+            'maker',
+            'taker',
           ],
           properties: {
-            baseToken: {
-              bsonType: 'string',
-            },
-            quoteToken: {
-              bsonType: 'string',
-            },
-            filledAmount: {
-              bsonType: 'string',
-            },
             amount: {
               bsonType: 'string',
             },
             pricepoint: {
               bsonType: 'string',
             },
-            makeFee: {
-              bsonType: 'string',
-            },
-            takeFee: {
-              bsonType: 'string',
-            },
-            side: {
-              bsonType: 'string',
-            },
             status: {
               bsonType: 'string',
             },
-            exchangeAddress: {
+            maker: {
               bsonType: 'string',
             },
-            userAddress: {
+            taker: {
               bsonType: 'string',
             },
-            signature: {
-              bsonType: 'object',
+            takerOrderHash: {
+              bsonType: 'string',
             },
-            nonce: {
+            makerOrderHash: {
+              bsonType: 'string',
+            },
+            hash: {
+              bsonType: 'string',
+            },
+            txHash: {
               bsonType: 'string',
             },
             pairName: {
               bsonType: 'string',
             },
-            hash: {
+            baseToken: {
+              bsonType: 'string',
+            },
+            quoteToken: {
               bsonType: 'string',
             },
             createdAt: {

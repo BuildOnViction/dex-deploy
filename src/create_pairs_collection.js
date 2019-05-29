@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient
-const { DB_NAME, mongoUrl } = require('./utils/config')
+const { DB_NAME, mongoUrl } = require('./config/config')
 const create = async () => {
   const client = await MongoClient.connect(
     mongoUrl,
