@@ -3,7 +3,7 @@ const utils = require('ethers').utils
 const MongoClient = require('mongodb').MongoClient
 
 const { getNetworkID } = require('./utils/helpers')
-const { DB_NAME, mongoUrl, network } = require('./utils/config')
+const { DB_NAME, mongoUrl, network } = require('./config/config')
 const networkID = getNetworkID(network)
 
 const {
@@ -14,7 +14,7 @@ const {
   decimals,
   makeFees,
   takeFees,
-} = require('./utils/config')
+} = require('./config/config')
 
 let documents = []
 let addresses = contractAddresses[networkID]

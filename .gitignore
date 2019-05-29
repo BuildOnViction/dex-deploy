@@ -22,9 +22,9 @@ core
 .vscode/
 vendor/
 
-/utils/datadir/*
+datadir
 
 /node_modules
 package-lock.json
 yarn.lock
-utils/addresses.json
+src/config/addresses.json

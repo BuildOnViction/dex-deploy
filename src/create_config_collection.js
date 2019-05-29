@@ -1,34 +1,32 @@
 const MongoClient = require('mongodb').MongoClient
-const { DB_NAME, mongoUrl } = require('./utils/config')
+const { DB_NAME, mongoUrl } = require('./config/config')
 const create = async () => {
   const client = await MongoClient.connect(
     mongoUrl,
     { useNewUrlParser: true },
   )
-  console.log('Creating tokens collection')
+  console.log('Creating config collection')
   const db = client.db(DB_NAME)
   try {
-    await db.createCollection('tokens', {
+    await db.createCollection('config', {
       validator: {
         $jsonSchema: {
           bsonType: 'object',
-          required: ['symbol', 'contractAddress', 'decimals'],
+          required: ['key'],
           properties: {
-            symbol: {
-              bsonType: 'string',
-              description: 'must be a string and is required',
-            },
-            contractAddress: {
+            key: {
               bsonType: 'string',
             },
-            quote: {
-              bsonType: 'bool',
-            },
-            decimals: {
-              bsonType: 'int',
-            },
-            usd: {
-              bsonType: 'string'
+            value: {
+              bsonType: [
+                'int',
+                'long',
+                'string',
+                'array',
+                'bool',
+                'date',
+                'object',
+              ],
             },
             createdAt: {
               bsonType: 'date',

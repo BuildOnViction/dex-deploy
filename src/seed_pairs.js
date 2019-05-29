@@ -2,7 +2,7 @@ const utils = require('ethers').utils
 const faker = require('faker')
 const MongoClient = require('mongodb').MongoClient
 const { getPriceMultiplier } = require('./utils/helpers')
-const { DB_NAME, mongoUrl, supportedPairs } = require('./utils/config')
+const { DB_NAME, mongoUrl, supportedPairs } = require('./config/config')
 
 let client, db
 

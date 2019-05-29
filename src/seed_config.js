@@ -1,7 +1,7 @@
 const faker = require('faker')
 const MongoClient = require('mongodb').MongoClient
 const Long = require('mongodb').Long
-const { DB_NAME, mongoUrl } = require('./utils/config')
+const { DB_NAME, mongoUrl } = require('./config/config')
 const argv = require('yargs').argv
 const network = argv.network || 'development'
 const { getEthereumBlockNumber } = require('./utils/helpers')

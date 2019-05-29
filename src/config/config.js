@@ -4,7 +4,7 @@ const path = require('path')
 const argv = require('yargs').argv
 const mongoUrl = argv.mongo_url || 'mongodb://localhost:27017'
 const network = argv.network || 'development'
-const { getNetworkID } = require('./helpers')
+const { getNetworkID } = require('../utils/helpers')
 const networkId = getNetworkID(network)
 // __dirname is running folder, __filename is current included file
 const tokenContent = fs.readFileSync(path.resolve(__dirname, './addresses.json')).toString()

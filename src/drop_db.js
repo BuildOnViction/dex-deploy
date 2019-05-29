@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const argv = require('yargs').argv;
-const { DB_NAME, mongoUrl } = require('./utils/config');
+const { DB_NAME, mongoUrl } = require('./config/config');
 let client, db;
 
 const drop = async () => {
