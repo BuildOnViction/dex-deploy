@@ -1,48 +1,54 @@
 version: '3'
 services:
-  # matching-engine:
-  #   image: amp-matching-engine
-  #   ports:
-  #     - "8081:8081"
-  #   environment:
-  #     - AMP_ETHEREUM_NODE_WS_URL=ws://ethereum:8546
-  #     - AMP_MONGO_URL=mongodb
-  #     - AMP_MONGO_DBNAME
-  #     - AMP_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
-  #     - AMP_EXCHANGE_CONTRACT_ADDRESS
-  #     - AMP_WETH_CONTRACT_ADDRESS
-  #     - AMP_FEE_ACCOUNT_ADDRESS
-  #   depends_on:
-  #     - mongodb
-  #     - rabbitmq
-  #     - ethereum
-
-  mongodb:
-    image: mongo:latest
-    container_name: 'mongodb'
-    volumes:
-      - ./utils/datadir:/data/db
+  mongo0:
+    hostname: mongo0
+    container_name: mongo0
+    image: mongo
     ports:
-      - '27017:27017'
-
-  mongodb-seed:
-    image: mongo:latest
-    container_name: 'mongodb-seed'
-    links:
-      - mongodb
+      - 27017:27017
     volumes:
-      - ./utils/seed-data:/utils/seed-data
+      - ./datadir/datadir0:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo1:
+    hostname: mongo1
+    container_name: mongo1
+    image: mongo
+    ports:
+      - 27018:27017
+    volumes:
+      - ./datadir/datadir1:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo2:
+    hostname: mongo2
+    container_name: mongo2
+    image: mongo
+    ports:
+      - 27019:27017
+    volumes:
+      - ./datadir/datadir2:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo-rs0-setup:
+    container_name: "mongo-rs0-setup"
+    image: mongo
     depends_on:
-      - mongodb
-    command:
-      - /bin/sh
-      - -c
-      - |
-        # mongo tomodex --eval "db.dropDatabase()"
-        mongoimport --host mongodb --db tomodex --type json --collection tokens --file utils/seed-data/tokens.bson
-        mongoimport --host mongodb --db tomodex --type json --collection pairs --file utils/seed-data/pairs.bson
-        mongoimport --host mongodb --db tomodex --type json --collection accounts --file utils/seed-data/accounts.bson
-        mongoimport --host mongodb --db tomodex --type json --collection wallets --file utils/seed-data/wallets.bson
+      - "mongo0"
+      - "mongo1"
+      - "mongo2"
+    links:
+      - mongo0:mongo0
+      - mongo1:mongo1
+      - mongo2:mongo2
+    volumes:
+      - ./scripts:/scripts
+    environment:
+      - MONGO0=mongo0
+      - MONGO1=mongo1
+      - MONGO2=mongo2
+      - RS=rs0
+    entrypoint: [ "/scripts/setup.sh" ]
 
   rabbitmq:
     image: rabbitmq
